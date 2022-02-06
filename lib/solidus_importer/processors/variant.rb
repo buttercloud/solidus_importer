@@ -27,12 +27,12 @@ module SolidusImporter
           # Apply the row attributes
           variant.weight = @data['Variant Weight'] unless @data['Variant Weight'].nil?
 
-          if @data['Variant Price'].present?
-            currency = Spree::Store.default.default_currency
-            price = Spree::Price.new(amount: @data['Variant Price'], currency: currency)
+          currency = Spree::Store.default.default_currency
+          price = Spree::Price.new(amount: @data['Variant Price'] || 0, currency: currency)
+          price2 = Spree::Price.new(amount: 0, currency: "USD")
 
-            variant.prices << price
-          end
+          variant.prices << price
+          variant.prices << price2
 
           # Save the variant
           variant.save!
