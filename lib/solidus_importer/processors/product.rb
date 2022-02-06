@@ -44,7 +44,7 @@ module SolidusImporter
       end
 
       def available?
-        @data['Published'] == 'true'
+        @data['Published'].try(:downcase) == 'true'
       end
     end
   end
