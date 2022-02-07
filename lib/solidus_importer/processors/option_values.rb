@@ -24,6 +24,7 @@ module SolidusImporter
             name: name.parameterize
           )
           option_value.presentation = name
+
           option_value.save!
           variant.option_values << option_value unless variant.option_values.include?(option_value)
           variant.save!
@@ -39,7 +40,7 @@ module SolidusImporter
           'Option1 Value',
           'Option2 Value',
           'Option3 Value'
-        ).compact
+        ).compact.reject(&:blank?)
       end
 
       def option_values?

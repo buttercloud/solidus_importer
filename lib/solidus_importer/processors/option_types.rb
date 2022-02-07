@@ -20,6 +20,7 @@ module SolidusImporter
           )
           option_type.presentation ||= name
           option_type.position = i + 1
+
           option_type.save!
           product.option_types << option_type unless product.option_types.include?(option_type)
           option_type
@@ -31,7 +32,7 @@ module SolidusImporter
           'Option1 Name',
           'Option2 Name',
           'Option3 Name'
-        ).compact
+        ).compact.reject(&:blank?)
       end
 
       def option_types?
