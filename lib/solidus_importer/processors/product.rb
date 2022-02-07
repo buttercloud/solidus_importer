@@ -25,12 +25,12 @@ module SolidusImporter
       end
 
       def prepare_product
-        Spree::Product.find_or_initialize_by(slug: @data['Handle'])
+        Spree::Product.find_or_initialize_by(slug: @data['Handle'].parameterize)
       end
 
       def process_product
         prepare_product.tap do |product|
-          product.slug = @data['Handle']
+          product.slug = @data['Handle'].parameterize
           product.price = options[:price]
           product.available_on = available? ? options[:available_on] : options[:not_available]
           product.shipping_category = options[:shipping_category]
