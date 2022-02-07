@@ -28,6 +28,7 @@ module SolidusImporter
         processors: [
           SolidusImporter::Processors::Product,
           SolidusImporter::Processors::Variant,
+          SolidusImporter::Processors::Taxon,
           SolidusImporter::Processors::OptionTypes,
           SolidusImporter::Processors::OptionValues,
           SolidusImporter::Processors::ProductImages,
